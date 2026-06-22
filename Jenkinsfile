@@ -18,8 +18,8 @@ pipeline {
         stage('Build em container Docker') {
             agent {
                 docker {
-                    image 'golang:1.25'
-                    args '-v $HOME/go/pkg/mod:/go/pkg/mod'
+                    image 'golang:1.26'
+                    args '-v go-mod-cache:/go/pkg/mod'
                 }
             }
 
@@ -30,7 +30,7 @@ pipeline {
                     echo "Container de build:"
                     hostname
                     go version
-                    go mod tidy
+                    go mod download
                     go build -v ./...
                 '''
 
@@ -41,8 +41,8 @@ pipeline {
         stage('Testes em outro container Docker') {
             agent {
                 docker {
-                    image 'golang:1.25'
-                    args '-v $HOME/go/pkg/mod:/go/pkg/mod'
+                    image 'golang:1.26'
+                    args '-v go-mod-cache:/go/pkg/mod'
                 }
             }
 
