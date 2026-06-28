@@ -14,7 +14,7 @@ func (c ConverterService) ToCelsius(temperature Temperature) Temperature {
 	value := (temperature.Value() - 32) * 5 / 9
 
 	return NewTemperature(value, Celsius)
-}
+
 
 func (c ConverterService) ToFahrenheit(temperature Temperature) Temperature {
 	if temperature.Unit() == Fahrenheit {
