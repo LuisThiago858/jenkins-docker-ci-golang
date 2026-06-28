@@ -11,7 +11,7 @@ func (c ConverterService) ToCelsius(temperature Temperature) Temperature {
 		return temperature
 	}
 
-	value := (temperature.Value() - 32) * 9 / 5
+	value := (temperature.Value() - 32) * 5 / 9
 
 	return NewTemperature(value, Celsius)
 }
